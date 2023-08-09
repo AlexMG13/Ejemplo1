@@ -1,11 +1,11 @@
 import React from 'react'
-import Main from '../components/Main'
 import Carousel from '../components/Carousel'
+import Article from '../components/Article'
 
 export default function Home() {
   return (
     <>
-      <Main />
+      <Article />
       <Carousel /> 
     </>
   )
