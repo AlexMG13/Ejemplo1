@@ -1,12 +1,15 @@
 import './App.css'
+import Home from './pages/Home'
+import Layout from './layouts/Layout'
+import Cities from './pages/Cities'
 
 function App() {
-  
-
   return (
     <>
-      <div className='primary'>
-        <h1>Anda o on Anda</h1>
+      <div className='w-full min-h-screen'>
+        <Layout>
+          <Home />
+        </Layout>
       </div>
     </>
   )

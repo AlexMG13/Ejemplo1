@@ -1,8 +1,15 @@
 import React from 'react'
+import Anchors from './Anchors'
+import Button from './Button'
 
-export const Nav = () => {
+export default function Nav() {
   return (
-    <div>Nav</div>
+    <div className='flex flex-row justify-between h-24'>
+        <img className='w-40' src="./public/logo-mytinerary-re.png" alt="logo My Tynerary" />
+        <nav className='flex gap-4 h-full items-center'>
+          <Anchors />
+          <Button />
+        </nav>
+    </div>
   )
 }
-

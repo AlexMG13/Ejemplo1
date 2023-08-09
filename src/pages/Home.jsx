@@ -1,7 +1,11 @@
 import React from 'react'
+import Main from '../components/Main'
+import Layout from '../layouts/Layout'
 
-export const Home = () => {
+export default function Home() {
   return (
-    <div>Home</div>
+    <Layout> 
+      <Main />
+    </Layout>
   )
 }
