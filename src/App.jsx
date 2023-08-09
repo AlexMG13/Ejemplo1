@@ -1,7 +1,7 @@
 import './App.css'
 import Home from './pages/Home'
 import Layout from './layouts/Layout'
-import Cities from './pages/Cities'
+
 
 function App() {
   return (
