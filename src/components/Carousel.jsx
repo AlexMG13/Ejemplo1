@@ -38,7 +38,7 @@ export default function Carousel() {
 
   return (
     <>
-        <h2>Popular MyTinerary</h2>    
+        <h2 className='text-2xl text-center font-bold'>Popular MyTinerary</h2>    
     <div className='max-w-[1024px] h-[800px] w-full py-16 px-4 relative group flex justify-around'>
         <div className='hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer'>
                 <BsChevronCompactLeft onClick={()=>{handlerBack()}} size={30} />
