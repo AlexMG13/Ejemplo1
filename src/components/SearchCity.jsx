@@ -3,7 +3,7 @@ import { BsSearch } from 'react-icons/bs'
 
 export default function SearchCity() {
   return (
-    <div className='flex w-[40%] gap-3 h-10 m-4'>
+    <div className='flex justify-center w-[40%] gap-3 h-10 m-4'>
         <div className='self-center'>
             <BsSearch />
         </div>
