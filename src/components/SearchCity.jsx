@@ -1,8 +1,9 @@
 import React from 'react'
 import { BsSearch } from 'react-icons/bs'
+
 export default function SearchCity() {
   return (
-    <div className='flex w-[40%] gap-3 h-10'>
+    <div className='flex w-[40%] gap-3 h-10 m-4'>
         <div className='self-center'>
             <BsSearch />
         </div>
