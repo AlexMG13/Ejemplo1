@@ -13,7 +13,7 @@ export default function Card({ props }) {
       <div className="card-body justify-between">
         <h2 className="card-title">{props.name}</h2>
         <div className="card-actions text-cyan-500">
-          <Anchor to='/details/' >Details</Anchor>
+          <Anchor to={`/city/${props._id}`} >Details</Anchor>
         </div>
       </div>
     </div>

@@ -1,15 +1,18 @@
 import React from "react";
-import { useState,useEffect,useParams } from 'react'
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { getCity } from '../services/citiesQueries.js'
 
-export default function Details({ city }) {
-  /* const { id } = useParams();
+export default function Details() {
   const [city, setCity] = useState({});
+  const { id } = useParams();
   useEffect(() => {
-    setCity(props.find((item) => item._id === id));
-  },[]); */
+    getCity(id)
+      .then((response) => setCity(response))
+      .catch((err)=>console.log(err))
+  },[]) ;
   return (
-    <div>Anda o no </div>
-    /* <div className="card lg:card-side bg-base-100 shadow-xl">
+    <div className="card lg:card-side bg-base-100 shadow-xl">
       <figure>
         <img src={city.photo} alt={city.name} />
       </figure>
@@ -18,8 +21,10 @@ export default function Details({ city }) {
         <p>{city.description}</p>
       </div>
       <div>
-        <h2 className='text-black text-2xl text-center'>Under Construction...</h2>
+        <h2 className="text-black text-2xl text-center">
+          Under Construction...
+        </h2>
       </div>
-    </div> */
+    </div>
   );
 }
