@@ -12,19 +12,21 @@ export default function Details() {
       .catch((err)=>console.log(err))
   },[]) ;
   return (
-    <div className="card lg:card-side bg-base-100 shadow-xl">
-      <figure>
-        <img src={city.photo} alt={city.name} />
-      </figure>
-      <div className="card-body">
-        <h2 className="card-title">{city.name}</h2>
-        <p>{city.description}</p>
+    <div className="flex justify-center flex-col mx-10">
+      <div className="card lg:card-side bg-base-100">
+        <figure>
+          <img src={city.photo} alt={city.name} />
+        </figure>
+        <div className="card-body w-[70%]">
+          <h2 className="card-title">{city.name}</h2>
+          <p>{city.description}</p>
+        </div>
       </div>
-      <div>
-        <h2 className="text-black text-2xl text-center">
-          Under Construction...
-        </h2>
-      </div>
+        <div className="my-48">
+          <h2 className="text-black text-2xl text-center">
+            Under Construction...
+          </h2>
+        </div>
     </div>
   );
 }
