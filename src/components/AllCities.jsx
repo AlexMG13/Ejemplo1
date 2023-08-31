@@ -1,22 +1,29 @@
-import React from 'react'
-import { useState,useEffect } from 'react'
-import Card from './Card'
-import { getAllCities } from '../services/citiesQueries.js'
+import React from "react";
+import { useEffect } from "react";
+import Card from "./Card";
+import { getAllCities } from "../services/citiesQueries.js";
+import { useDispatch, useSelector } from "react-redux";
+import citiesActions from "../store/actions/Cities";
 
 export default function AllCities() {
-  const [cities , setCities] = useState([])
+  let citiesInStore = useSelector((store) => store.citiesReducer.cities);
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    getAllCities().then((data) => {
-      setCities(data)
-    }).catch(err => console.log(err))
-  },[]);
+    getAllCities()
+      .then((data) => {
+        dispatch(citiesActions.add_cities(data));
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
-    <div className='flex justify-center'>
-      <div className='flex flex-wrap gap-3 m-4'> 
-        {cities.map( (city) => 
-        <Card key={city._id} props={city} /> )}
+    <div className="flex justify-center">
+      <div className="flex flex-wrap gap-3 m-4">
+        {citiesInStore?.map((city, i) => (
+          <Card key={i} city={city} />
+        ))}
       </div>
     </div>
-  )
+  );
 }

@@ -17,7 +17,7 @@ export default function Details() {
         <figure>
           <img src={city.photo} alt={city.name} />
         </figure>
-        <div className="card-body w-[70%]">
+        <div className="card-body w-[70%] self-center">
           <h2 className="card-title">{city.name}</h2>
           <p>{city.description}</p>
         </div>
