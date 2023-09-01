@@ -1,7 +1,8 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getCity } from '../services/citiesQueries.js'
+import { getCity } from "../services/citiesQueries.js";
+import Itinerary from "../components/Itinerary.jsx";
 
 export default function Details() {
   const [city, setCity] = useState({});
@@ -9,8 +10,8 @@ export default function Details() {
   useEffect(() => {
     getCity(id)
       .then((response) => setCity(response))
-      .catch((err)=>console.log(err))
-  },[]) ;
+      .catch((err) => console.log(err));
+  }, []);
   return (
     <div className="flex justify-center flex-col mx-10">
       <div className="card lg:card-side bg-base-100">
@@ -22,11 +23,9 @@ export default function Details() {
           <p>{city.description}</p>
         </div>
       </div>
-        <div className="my-48">
-          <h2 className="text-black text-2xl text-center">
-            Under Construction...
-          </h2>
-        </div>
+      <div className="my-10 flex justify-center">
+        {<Itinerary itinerary={city.itineraries} />}
+      </div>
     </div>
   );
 }
