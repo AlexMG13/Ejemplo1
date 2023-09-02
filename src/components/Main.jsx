@@ -1,7 +1,7 @@
-import React from "react"
-import Article from "./Article"
-import CallToAction from "./CallToAction"
-import Carousel from "./Carousel"
+import React from "react";
+import Article from "./Article";
+import CallToAction from "./CallToAction";
+import Carousel from "./Carousel";
 
 export default function Main() {
   return (
