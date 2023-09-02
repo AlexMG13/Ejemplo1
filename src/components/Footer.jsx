@@ -5,7 +5,7 @@ import Buttons from "./Buttons";
 
 export default function Footer() {
   return (
-    <footer className="flex flex-row justify-between m-4">
+    <footer className="flex flex-row justify-between m-4 p-2">
       <div className="flex flex-row gap-4 self-center">
         <Anchor to="#">
           <FiInstagram />
