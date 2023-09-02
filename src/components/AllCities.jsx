@@ -18,8 +18,8 @@ export default function AllCities() {
   }, []);
 
   return (
-    <div className="w-[90%] flex justify-center">
-      <div className="flex flex-wrap gap-3 m-4">
+    <div className="w-full flex justify-center mx-4">
+      <div className="flex flex-wrap gap-3">
         {citiesInStore?.map((city, i) => (
           <Card key={i} city={city} />
         ))}
