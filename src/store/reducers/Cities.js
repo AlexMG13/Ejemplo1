@@ -42,7 +42,10 @@ const citiesReducer = createReducer(initialState, (builder) => {
       return newState;
     })
     .addCase(citiesActions.add_city_filtered, (state, action) => {
-      const newState = { ...state, cityFiltered: action.payload.cities };
+      const filter = action.payload.cities.filter((city) =>
+        city.name.toLowerCase().includes(action.payload.inputValue)
+      );
+      const newState = { ...state, cityFiltered: filter };
       return newState;
     });
 });

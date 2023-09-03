@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 
 const cities = [
@@ -93,6 +93,19 @@ export default function Carousel() {
       setStart(start + 4);
     }
   };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (end != 12) {
+        setStart(start + 4);
+        setEnd(end + 4);
+      } else {
+        setStart(0);
+        setEnd(4);
+      }
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [start]);
 
   return (
     <>

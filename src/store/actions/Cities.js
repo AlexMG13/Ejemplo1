@@ -14,10 +14,11 @@ const add_city = createAction("add_city", (city) => {
     },
   };
 });
-const add_city_filtered = createAction("add_city_filtered", (array) => {
+const add_city_filtered = createAction("add_city_filtered", (array, search) => {
   return {
     payload: {
       cities: array,
+      inputValue: search,
     },
   };
 });
