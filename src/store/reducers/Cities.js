@@ -47,6 +47,10 @@ const citiesReducer = createReducer(initialState, (builder) => {
       );
       const newState = { ...state, cityFiltered: filter };
       return newState;
+    })
+    .addCase(citiesActions.add_cities_async.fulfilled, (state, action) => {
+      const newState = { ...state, cities: action.payload };
+      return newState;
     });
 });
 

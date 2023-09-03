@@ -7,16 +7,17 @@ import citiesActions from "../store/actions/Cities";
 
 export default function AllCities() {
   let citiesInStore = useSelector((store) => store.citiesReducer.cities);
-  let citiesFilteredInStore = useSelector(
+  /*  let citiesFilteredInStore = useSelector(
     (store) => store.citiesReducer.cityFiltered
-  );
+  ); */
   const dispatch = useDispatch();
   useEffect(() => {
-    getAllCities()
+    dispatch(citiesActions.add_cities_async());
+    /* getAllCities()
       .then((data) => {
         dispatch(citiesActions.add_cities(data));
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err)); */
   }, []);
 
   return (
