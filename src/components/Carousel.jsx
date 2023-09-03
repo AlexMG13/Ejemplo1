@@ -105,7 +105,7 @@ export default function Carousel() {
       }
     }, 3000);
     return () => clearInterval(interval);
-  }, [start]);
+  }, [start, end]);
 
   return (
     <>
