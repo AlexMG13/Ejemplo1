@@ -8,13 +8,13 @@ export default function SearchCity() {
   let citiesFilteredInStore = useSelector(
     (store) => store.citiesReducer.cityFiltered
   );
-  const inputBusqueda = useRef(null);
+  const inputSearch = useRef(null);
   const dispatch = useDispatch();
   const handleInput = () => {
     dispatch(
       citiesActions.add_city_filtered(
         citiesFilteredInStore,
-        inputBusqueda.current.value
+        inputSearch.current.value
       )
     );
   };
@@ -24,10 +24,10 @@ export default function SearchCity() {
         type="text"
         placeholder="Search your dream city!"
         className="input input-bordered input-primary w-full max-w-xs"
-        ref={inputBusqueda}
+        ref={inputSearch}
       />
       <div className="self-center">
-        <button className="btn" onInput={handleInput}>
+        <button className="btn" onClick={handleInput}>
           <BsSearch />
         </button>
       </div>
