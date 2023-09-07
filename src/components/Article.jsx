@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Article() {
   return (
-    <div className="flex flex-col w-[60%]  justify-center items-center mt-20">
+    <div className="flex flex-col w-1/2  justify-center items-center mt-20">
       <div className="flex flex-row">
         <div className="flex-col justify-around">
           <h1 className="text-2xl font-bold">Find the perfect destination</h1>

@@ -103,14 +103,14 @@ export default function Carousel() {
         setStart(0);
         setEnd(4);
       }
-    }, 3000);
+    }, 5000);
     return () => clearInterval(interval);
   }, [start, end]);
 
   return (
     <>
       <h2 className="text-2xl text-center font-bold">Popular MyTinerary</h2>
-      <div className="max-w-[900px] h-[800px] py-16 px-4 relative group flex justify-around">
+      <div className="max-w-[800px] h-[600px] py-8 relative group flex justify-around">
         <div className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer">
           <BsChevronCompactLeft
             onClick={() => {
@@ -119,7 +119,7 @@ export default function Carousel() {
             size={30}
           />
         </div>
-        <div className="w-[80%] flex flex-wrap justify-between">
+        <div className="w-[75%] flex flex-wrap justify-between">
           {cities.slice(start, end).map((city) => (
             <div className="w-[45%]" key={city.id}>
               <img src={city.url} />
