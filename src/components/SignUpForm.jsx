@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getContries } from "../services/citiesQueries";
+import { Link as Anchor } from "react-router-dom";
 
 export default function SignUpForm() {
   const [countries, setContries] = useState([]);
@@ -9,73 +10,114 @@ export default function SignUpForm() {
       .catch((err) => console.log(err));
   }, []);
   return (
-    <form className=" bg-blue-400 w-[50%] h-[30%] flex flex-col items-stretch m-3 p-3 gap-4 rounded-xl font-bold text-xl">
-      <div>
-        <label htmlFor="name">Name:</label>
-        <input
-          className="m-2 rounded-lg"
-          type="text"
-          id="name"
-          name="name"
-          required
-        />
-      </div>
-      <div>
-        <label htmlFor="lastname">Lastname:</label>
-        <input
-          className="m-2 rounded-lg"
-          type="text"
-          id="lastname"
-          name="lastname"
-          required
-        />
-      </div>
-      <div>
-        <label htmlFor="email">Email:</label>
-        <input
-          className="m-2 rounded-lg"
-          type="email"
-          id="email"
-          name="email"
-          required
-        />
-      </div>
-      <div>
-        <label htmlFor="password">Password:</label>
-        <input
-          className="m-2 rounded-lg"
-          type="password"
-          id="password"
-          name="password"
-          required
-        />
-      </div>
-      <div>
-        <label htmlFor="url">URL photo:</label>
-        <input
-          className="m-2 rounded-lg"
-          type="url"
-          id="url"
-          name="url"
-          required
-        />
-      </div>
-      <div>
-        <select className="m-2 rounded-lg" id="country" name="country" required>
-          <option value="">Select country</option>
-          {countries.map((country, i) => (
-            <option key={i} value={country.country}>
-              {country.country}
-            </option>
-          ))}
-        </select>
-      </div>
-      <button
-        className="bg-white hover:bg-blue-600 w-48 self-center rounded-lg"
-        type="submit"
-      >
-        Enviar
-      </button>
-    </form>
+    <main className="flex justify-center items-center h-screen">
+      <form className=" bg-blue-400 flex w-1/2 p-3 rounded-lg gap-3">
+        <div className="flex-1">
+          <div>
+            <h1 className="text-3xl pb-2 font-bold">Let&#39;s get started!</h1>
+            <p className="text-gray-700">
+              Enjoy looking and creating itineraries for any city with the
+              community
+            </p>
+          </div>
+          <div className="py-2">
+            <label className="block text-lg" htmlFor="name">
+              Name:
+            </label>
+            <input
+              placeholder="Name"
+              className="rounded-md w-2/3 p-2 focus:ring-blue-400 focus:border-blue-400"
+              type="text"
+              id="name"
+              name="name"
+              required
+            />
+          </div>
+          <div className="pb-2">
+            <label className="block text-lg" htmlFor="lastname">
+              Lastname:
+            </label>
+            <input
+              placeholder="Lastname"
+              className="rounded-md w-2/3 p-2"
+              type="text"
+              id="lastname"
+              name="lastname"
+              required
+            />
+          </div>
+          <div className="pb-2">
+            <label className="block text-lg" htmlFor="email">
+              Email:
+            </label>
+            <input
+              placeholder="Email"
+              className="rounded-md w-2/3 p-2"
+              type="email"
+              id="email"
+              name="email"
+              required
+            />
+          </div>
+          <div className="pb-2">
+            <label className="block text-lg" htmlFor="password">
+              Password:
+            </label>
+            <input
+              placeholder="Password"
+              className="rounded-md w-2/3 p-2"
+              type="password"
+              id="password"
+              name="password"
+              required
+            />
+          </div>
+          <div className="pb-2">
+            <label className="block text-lg" htmlFor="url">
+              Photo:
+            </label>
+            <input
+              placeholder="URL of photo"
+              className="rounded-md w-2/3 p-2"
+              type="url"
+              id="url"
+              name="url"
+              required
+            />
+          </div>
+          <div className="pb-2">
+            <select
+              className="my-3 rounded-md w-2/3 p-2"
+              id="country"
+              name="country"
+              required
+            >
+              <option value="country">Country</option>
+              {countries.map((country, i) => (
+                <option key={i} value={country.country}>
+                  {country.country}
+                </option>
+              ))}
+            </select>
+          </div>
+          <button
+            className="bg-white hover:bg-blue-600 w-1/2 rounded-lg p-2 text-lg font-bold"
+            type="submit"
+          >
+            Register now
+          </button>
+        </div>
+        <div className="flex-1 relative self-center">
+          <img
+            className="object-cover"
+            src="https://images.unsplash.com/photo-1638271264550-32286ed1219b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80"
+            alt="buenos aires"
+          />
+          <div className="bg-white hover:bg-blue-600 rounded-lg font-bold p-2 text-center mt-8 text-lg">
+            <Anchor to="/login">Already register?</Anchor>
+          </div>
+        </div>
+      </form>
+    </main>
   );
 }
