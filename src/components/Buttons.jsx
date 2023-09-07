@@ -11,7 +11,10 @@ export default function Buttons() {
         <Anchor to="/cities">Cities</Anchor>
       </div>
       <div className="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-        <Anchor to="/">Login</Anchor>
+        <Anchor to="/login">Log In</Anchor>
+      </div>
+      <div className="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        <Anchor to="/signup">Sign Up</Anchor>
       </div>
     </nav>
   );
