@@ -6,9 +6,13 @@ import Hero from "./Hero";
 export default function MainCities() {
   return (
     <div>
-      <Hero />
-      <SearchCity />
-      <AllCities />
+      <div className="h-screen">
+        <Hero />
+        <SearchCity />
+      </div>
+      <div className="h-screen">
+        <AllCities />
+      </div>
     </div>
   );
 }

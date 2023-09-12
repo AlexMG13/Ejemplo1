@@ -1,8 +1,24 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Link as Anchor } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
+import axios from "axios";
 
 export default function LogInForm() {
+  const emailInputRef = useRef();
+  const passwordInputRef = useRef();
+
+  const handlerInput = () => {
+    axios
+      .post("http://localhost:3030/api/user/login", {
+        email: emailInputRef.current.value,
+        password: passwordInputRef.current.value,
+      })
+      .then((response) => {
+        localStorage.setItem("token", response.data.token);
+        return response.data.user;
+      });
+  };
+
   return (
     <main className="h-screen flex justify-center items-center">
       <form className="w-1/3 bg-blue-400 rounded-lg">
@@ -37,12 +53,12 @@ export default function LogInForm() {
               required
             />
           </div>
-        </div>
-
-        <div className="flex flex-col justify-center items-center gap-1">
           <div className=" bg-white hover:bg-blue-600 rounded-lg font-bold p-2 text-center text-lg mt-2">
             <Anchor to="/">Log In</Anchor>
           </div>
+        </div>
+
+        <div className="flex flex-col justify-center items-center gap-1">
           <div className="text-center">
             <p className="font-bold">Or with</p>
             <div className="bg-white hover:bg-blue-600 rounded-lg font-bold p-2 text-center text-lg flex flex-row justify-center items-center mt-2 gap-1">

@@ -19,7 +19,7 @@ export default function SearchCity() {
     );
   };
   return (
-    <div className="flex justify-center gap-3 h-10 m-10 ">
+    <div className="flex justify-center gap-3 h-10 mt-10 ">
       <input
         type="text"
         placeholder="Search your dream city!"

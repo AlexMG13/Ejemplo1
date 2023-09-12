@@ -6,6 +6,9 @@ import Details from "./pages/Details";
 import SignUp from "./pages/SignUp";
 import LogIn from "./pages/LogIn";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import userActions from "./store/actions/User";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +39,10 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(userActions.authenticate());
+  }, []);
   return <RouterProvider router={router}></RouterProvider>;
 }
 

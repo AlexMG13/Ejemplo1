@@ -6,8 +6,10 @@ import Carousel from "./Carousel";
 export default function Main() {
   return (
     <div className="flex flex-col justify-center items-center">
-      <Article />
-      <CallToAction />
+      <div className="h-screen flex flex-col justify-center items-center">
+        <Article />
+        <CallToAction />
+      </div>
       <Carousel />
     </div>
   );
