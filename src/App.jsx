@@ -41,7 +41,10 @@ const router = createBrowserRouter([
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(userActions.authenticate());
+    const token = localStorage.getItem("token");
+    if (token) {
+      dispatch(userActions.authenticate());
+    }
   }, []);
   return <RouterProvider router={router}></RouterProvider>;
 }

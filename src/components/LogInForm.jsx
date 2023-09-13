@@ -37,6 +37,7 @@ export default function LogInForm() {
               id="email"
               name="email"
               className="rounded-lg"
+              ref={emailInputRef}
               required
             />
           </div>
@@ -50,11 +51,14 @@ export default function LogInForm() {
               id="password"
               name="password"
               className="rounded-lg"
+              ref={passwordInputRef}
               required
             />
           </div>
           <div className=" bg-white hover:bg-blue-600 rounded-lg font-bold p-2 text-center text-lg mt-2">
-            <Anchor to="/">Log In</Anchor>
+            <Anchor to="/" onClick={handlerInput}>
+              Log In
+            </Anchor>
           </div>
         </div>
 

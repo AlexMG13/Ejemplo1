@@ -35,7 +35,8 @@ const authenticate = createAsyncThunk("authenticate", async () => {
       .then((response) => {
         console.log("Authenticated succesfull");
         localStorage.setItem("token", response.data.token);
-        return response.data.user;
+        console.log(response.data);
+        return response.data;
       });
     return {
       user: user,
@@ -47,7 +48,7 @@ const authenticate = createAsyncThunk("authenticate", async () => {
 
 const sign_out = createAsyncThunk("sign_out", async () => {
   try {
-    axios.post("http://localhost:3030/api/user/sign_out").then((response) => {
+    axios.post("http://localhost:3030/api/user/signout").then((response) => {
       localStorage.removeItem("token");
     });
   } catch (error) {
@@ -55,10 +56,24 @@ const sign_out = createAsyncThunk("sign_out", async () => {
   }
 });
 
+export const sign_up = createAsyncThunk("sign_up", async (obj) => {
+  try {
+    const response = await axios.post(
+      "http://localhost:3030/api/user/register",
+      obj
+    );
+    response.data.token && localStorage.setItem("token", response.data.token);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 const userActions = {
   sign_in,
   authenticate,
   sign_out,
+  sign_up,
 };
 
 export default userActions;
