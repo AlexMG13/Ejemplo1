@@ -50,9 +50,9 @@ export default function SignUpForm() {
   };
 
   return (
-    <main className="flex justify-center items-center h-[80%]">
+    <main className="w-full lg:flex justify-center items-center h-[80%]">
       <form className="md:w-2/3 bg-blue-400 lg:bg-blue-400 flex w-1/2 p-3 rounded-lg gap-3">
-        <div className="flex-1">
+        <div className="lg:flex-1">
           <div>
             <h1 className="text-3xl pb-2 font-bold">Let&#39;s get started!</h1>
             <p className="text-gray-700">
@@ -153,13 +153,13 @@ export default function SignUpForm() {
             Register now
           </button>
         </div>
-        <div className="flex-1 relative self-center">
+        <div className="invisible lg:flex-1 relative self-center">
           <img
-            className="object-cover"
+            className="invisible lg:object-cover"
             src="https://images.unsplash.com/photo-1638271264550-32286ed1219b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80"
             alt="buenos aires"
           />
-          <div className="bg-white hover:bg-blue-600 rounded-lg font-bold p-2 text-center mt-8 text-lg">
+          <div className="lg:bg-white hover:bg-blue-600 rounded-lg font-bold p-2 text-center mt-8 text-lg">
             <Anchor to="/login">Already register?</Anchor>
           </div>
           <div className="mt-2">

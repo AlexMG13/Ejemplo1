@@ -11,10 +11,10 @@ export default function Hero() {
           backgroundSize: "cover",
         }}
       >
-        <h2 className="text-black text-4xl text-center font-bold mt-6">
+        <h2 className="text-white lg:text-black text-4xl text-center font-bold mt-6">
           Cities
         </h2>
-        <h3 className="text-black text-2xl text-center my-2">
+        <h3 className="text-white lg:text-black text-2xl text-center my-2">
           Collection of the most beautiful places and experiences
         </h3>
       </div>

@@ -23,7 +23,7 @@ export default function SearchCity() {
       <input
         type="text"
         placeholder="Search your dream city!"
-        className="border-2 p-2 border-gray-500 rounded-md focus:border-blue-400 w-1/4 focus:ring-blue-400"
+        className="w-2/3 lg:border-2 p-2 border-gray-500 rounded-md focus:border-blue-400 w-1/4 focus:ring-blue-400"
         ref={inputSearch}
       />
       <div className="self-center">
