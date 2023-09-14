@@ -51,7 +51,7 @@ export default function SignUpForm() {
 
   return (
     <main className="flex justify-center items-center h-[80%]">
-      <form className=" bg-blue-400 flex w-1/2 p-3 rounded-lg gap-3">
+      <form className="md:w-2/3 bg-blue-400 lg:bg-blue-400 flex w-1/2 p-3 rounded-lg gap-3">
         <div className="flex-1">
           <div>
             <h1 className="text-3xl pb-2 font-bold">Let&#39;s get started!</h1>

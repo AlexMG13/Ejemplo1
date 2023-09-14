@@ -1,10 +1,9 @@
 import React, { useRef } from "react";
-import { Link as Anchor } from "react-router-dom";
+import { Link as Anchor, useNavigate } from "react-router-dom";
 import { GoogleLogin } from "@react-oauth/google";
 import decode from "jwt-decode";
 import { useDispatch } from "react-redux";
 import userActions from "../store/actions/User";
-import { useNavigate } from "react-router-dom";
 
 export default function LogInForm() {
   const dispatch = useDispatch();
@@ -36,7 +35,7 @@ export default function LogInForm() {
 
   return (
     <main className="h-screen flex justify-center items-center">
-      <form className="w-1/3 bg-blue-400 rounded-lg">
+      <form className="sm:w-2/3 bg-blue-400 md:w-2/3 bg-blue-400 lg:w-1/3 bg-blue-400 rounded-lg">
         <div className="p-2 flex flex-col justify-center items-center">
           <h1 className="font-bold text-2xl">Hello! please Log In</h1>
           <p className="text-gray-200">Keep enjoying and sharing!</p>

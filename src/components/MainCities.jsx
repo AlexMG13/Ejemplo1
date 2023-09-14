@@ -10,7 +10,7 @@ export default function MainCities() {
         <Hero />
         <SearchCity />
       </div>
-      <div className="h-screen">
+      <div className="md:h-[50%] lg:h-screen">
         <AllCities />
       </div>
     </div>
