@@ -11,7 +11,7 @@ const sign_in = createAsyncThunk("sign_in", async (payload) => {
       })
       .then((response) => {
         localStorage.setItem("token", response.data.token);
-        return response.data.user;
+        return response.data;
       })
       .catch((error) =>
         error.response.data.message.foreach((message) => console.log(message))
@@ -26,7 +26,7 @@ const sign_in = createAsyncThunk("sign_in", async (payload) => {
 const authenticate = createAsyncThunk("authenticate", async () => {
   try {
     let token = localStorage.getItem("token");
-    let user = await axios
+    const user = await axios
       .post("http://localhost:3030/api/user/authenticated", null, {
         headers: {
           Authorization: "Bearer " + token,
@@ -35,8 +35,7 @@ const authenticate = createAsyncThunk("authenticate", async () => {
       .then((response) => {
         console.log("Authenticated succesfull");
         localStorage.setItem("token", response.data.token);
-        console.log(response.data);
-        return response.data;
+        return response.data.user;
       });
     return {
       user: user,
@@ -58,12 +57,14 @@ const sign_out = createAsyncThunk("sign_out", async () => {
 
 export const sign_up = createAsyncThunk("sign_up", async (obj) => {
   try {
-    const response = await axios.post(
+    const user = await axios.post(
       "http://localhost:3030/api/user/register",
       obj
     );
-    response.data.token && localStorage.setItem("token", response.data.token);
-    return response.data;
+    user.data.token && localStorage.setItem("token", user.data.token);
+    return {
+      user: user,
+    };
   } catch (error) {
     console.log(error);
   }

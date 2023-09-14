@@ -1,22 +1,37 @@
 import React, { useRef } from "react";
 import { Link as Anchor } from "react-router-dom";
-import { FcGoogle } from "react-icons/fc";
-import axios from "axios";
+import { GoogleLogin } from "@react-oauth/google";
+import decode from "jwt-decode";
+import { useDispatch } from "react-redux";
+import userActions from "../store/actions/User";
+import { useNavigate } from "react-router-dom";
 
 export default function LogInForm() {
+  const dispatch = useDispatch();
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
+  const navigate = useNavigate();
 
-  const handlerInput = () => {
-    axios
-      .post("http://localhost:3030/api/user/login", {
-        email: emailInputRef.current.value,
-        password: passwordInputRef.current.value,
-      })
-      .then((response) => {
-        localStorage.setItem("token", response.data.token);
-        return response.data.user;
-      });
+  const handlerInput = (e) => {
+    e.preventDefault();
+    const body = {
+      email: emailInputRef.current.value,
+      password: passwordInputRef.current.value,
+    };
+    dispatch(userActions.sign_in(body));
+  };
+
+  const logInWithGoogle = (credentialResponse) => {
+    const dataUser = decode(credentialResponse.credential);
+    const body = {
+      email: dataUser.email,
+      password: dataUser.sub,
+    };
+    dispatch(userActions.sign_in(body)).then((response) => {
+      if (response.payload.success) {
+        navigate("/");
+      }
+    });
   };
 
   return (
@@ -65,10 +80,14 @@ export default function LogInForm() {
         <div className="flex flex-col justify-center items-center gap-1">
           <div className="text-center">
             <p className="font-bold">Or with</p>
-            <div className="bg-white hover:bg-blue-600 rounded-lg font-bold p-2 text-center text-lg flex flex-row justify-center items-center mt-2 gap-1">
-              <FcGoogle />
-              <Anchor to="/">Google</Anchor>
-            </div>
+            <GoogleLogin
+              text="signin_with"
+              onSuccess={logInWithGoogle}
+              onError={() => {
+                console.log("Login Failed");
+              }}
+            />
+            ;
           </div>
           <div className="bg-white hover:bg-blue-600 rounded-lg font-bold p-2 text-center text-lg my-4">
             <Anchor to="/signup">Not registered yet?</Anchor>

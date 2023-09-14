@@ -1,16 +1,56 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { getContries } from "../services/citiesQueries";
 import { Link as Anchor } from "react-router-dom";
+import { GoogleLogin } from "@react-oauth/google";
+import decode from "jwt-decode";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import userActions from "../store/actions/User";
+import { useNavigate } from "react-router-dom";
 
 export default function SignUpForm() {
+  const emailInputRef = useRef();
+  const passwordInputRef = useRef();
+  const nameInputRef = useRef();
+  const lastnameInputRef = useRef();
+  const photoInputRef = useRef();
+  const countryInputRef = useRef();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [countries, setContries] = useState([]);
   useEffect(() => {
     getContries()
       .then((response) => setContries(response.data))
       .catch((err) => console.log(err));
   }, []);
+
+  const signUpWithGoogle = (credentialResponse) => {
+    const dataUser = decode(credentialResponse.credential);
+    const body = {
+      name: dataUser.name,
+      email: dataUser.email,
+      password: dataUser.sub,
+      photo: dataUser.picture,
+    };
+    dispatch(userActions.sign_up(body)).then((response) => {
+      if (response.payload.success) {
+        navigate("/");
+      }
+    });
+  };
+  const signUp = () => {
+    const body = {
+      name: nameInputRef,
+      email: emailInputRef.current.value,
+      password: passwordInputRef,
+      photo: photoInputRef,
+      country: countryInputRef,
+    };
+    dispatch(userActions.sign_up(body));
+  };
+
   return (
-    <main className="flex justify-center items-center h-screen">
+    <main className="flex justify-center items-center h-[80%]">
       <form className=" bg-blue-400 flex w-1/2 p-3 rounded-lg gap-3">
         <div className="flex-1">
           <div>
@@ -30,6 +70,7 @@ export default function SignUpForm() {
               type="text"
               id="name"
               name="name"
+              ref={nameInputRef}
               required
             />
           </div>
@@ -43,7 +84,7 @@ export default function SignUpForm() {
               type="text"
               id="lastname"
               name="lastname"
-              required
+              ref={lastnameInputRef}
             />
           </div>
           <div className="pb-2">
@@ -56,6 +97,7 @@ export default function SignUpForm() {
               type="email"
               id="email"
               name="email"
+              ref={emailInputRef}
               required
             />
           </div>
@@ -69,6 +111,7 @@ export default function SignUpForm() {
               type="password"
               id="password"
               name="password"
+              ref={passwordInputRef}
               required
             />
           </div>
@@ -82,6 +125,7 @@ export default function SignUpForm() {
               type="url"
               id="url"
               name="url"
+              ref={photoInputRef}
               required
             />
           </div>
@@ -90,6 +134,7 @@ export default function SignUpForm() {
               className="my-3 rounded-md w-2/3 p-2"
               id="country"
               name="country"
+              ref={countryInputRef}
               required
             >
               <option value="country">Country</option>
@@ -103,6 +148,7 @@ export default function SignUpForm() {
           <button
             className="bg-white hover:bg-blue-600 w-1/2 rounded-lg p-2 text-lg font-bold"
             type="submit"
+            onClick={signUp}
           >
             Register now
           </button>
@@ -115,6 +161,16 @@ export default function SignUpForm() {
           />
           <div className="bg-white hover:bg-blue-600 rounded-lg font-bold p-2 text-center mt-8 text-lg">
             <Anchor to="/login">Already register?</Anchor>
+          </div>
+          <div className="mt-2">
+            <GoogleLogin
+              text="signup_with"
+              onSuccess={signUpWithGoogle}
+              onError={() => {
+                console.log("Login Failed");
+              }}
+            />
+            ;
           </div>
         </div>
       </form>
