@@ -12,6 +12,11 @@ import userActions from "./store/actions/User";
 
 const router = createBrowserRouter([
   {
+    path: "/login",
+    element: <Layout />,
+    children: [{ path: "/login", element: <LogIn /> }],
+  },
+  {
     path: "/",
     element: <Layout />,
     children: [{ path: "/", element: <Home /> }],
@@ -30,11 +35,6 @@ const router = createBrowserRouter([
     path: "/signup",
     element: <Layout />,
     children: [{ path: "/signup", element: <SignUp /> }],
-  },
-  {
-    path: "/login",
-    element: <Layout />,
-    children: [{ path: "/login", element: <LogIn /> }],
   },
 ]);
 

@@ -17,7 +17,7 @@ const sign_in = createAsyncThunk("sign_in", async (payload) => {
         error.response.data.message.foreach((message) => console.log(message))
       );
 
-    return { user: user };
+    return { user: user, message: console.log(user) };
   } catch (error) {
     console.log(error.message);
   }

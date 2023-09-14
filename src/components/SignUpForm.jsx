@@ -3,7 +3,6 @@ import { getContries } from "../services/citiesQueries";
 import { Link as Anchor } from "react-router-dom";
 import { GoogleLogin } from "@react-oauth/google";
 import decode from "jwt-decode";
-import axios from "axios";
 import { useDispatch } from "react-redux";
 import userActions from "../store/actions/User";
 import { useNavigate } from "react-router-dom";
@@ -153,9 +152,9 @@ export default function SignUpForm() {
             Register now
           </button>
         </div>
-        <div className="invisible lg:flex-1 relative self-center">
+        <div className="invisible lg:visible flex-1 relative self-center">
           <img
-            className="invisible lg:object-cover"
+            className="invisible lg:visible object-cover"
             src="https://images.unsplash.com/photo-1638271264550-32286ed1219b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80"
             alt="buenos aires"
           />
