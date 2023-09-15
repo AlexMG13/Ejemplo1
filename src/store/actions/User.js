@@ -61,10 +61,8 @@ export const sign_up = createAsyncThunk("sign_up", async (obj) => {
       "http://localhost:3030/api/user/register",
       obj
     );
-    user.data.token && localStorage.setItem("token", user.data.token);
-    return {
-      user: user,
-    };
+    localStorage.setItem("token", user.data.token);
+    return user.data;
   } catch (error) {
     console.log(error);
   }

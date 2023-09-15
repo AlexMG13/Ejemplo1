@@ -39,12 +39,13 @@ export default function SignUpForm() {
   };
   const signUp = () => {
     const body = {
-      name: nameInputRef,
+      name: nameInputRef.current.value,
       email: emailInputRef.current.value,
-      password: passwordInputRef,
-      photo: photoInputRef,
-      country: countryInputRef,
+      password: passwordInputRef.current.value,
+      photo: photoInputRef.current.value,
+      country: countryInputRef.current.value,
     };
+    console.log(body);
     dispatch(userActions.sign_up(body));
   };
 
