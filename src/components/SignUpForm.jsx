@@ -31,11 +31,7 @@ export default function SignUpForm() {
       password: dataUser.sub,
       photo: dataUser.picture,
     };
-    dispatch(userActions.sign_up(body)).then((response) => {
-      if (response.payload.success) {
-        navigate("/");
-      }
-    });
+    dispatch(userActions.sign_up(body));
   };
   const signUp = () => {
     const body = {
@@ -45,7 +41,6 @@ export default function SignUpForm() {
       photo: photoInputRef.current.value,
       country: countryInputRef.current.value,
     };
-    console.log(body);
     dispatch(userActions.sign_up(body));
   };
 
@@ -126,7 +121,6 @@ export default function SignUpForm() {
               id="url"
               name="url"
               ref={photoInputRef}
-              required
             />
           </div>
           <div className="pb-2">
