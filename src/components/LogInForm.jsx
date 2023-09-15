@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { Link as Anchor, useNavigate } from "react-router-dom";
+import { Link as Anchor, Navigate, useNavigate } from "react-router-dom";
 import { GoogleLogin } from "@react-oauth/google";
 import decode from "jwt-decode";
 import { useDispatch } from "react-redux";
@@ -17,7 +17,12 @@ export default function LogInForm() {
       email: emailInputRef.current.value,
       password: passwordInputRef.current.value,
     };
-    dispatch(userActions.sign_in(body));
+    dispatch(userActions.sign_in(body)).then((response) => {
+      console.log(response.meta.arg.email);
+      if (response.meta.arg.email != "") {
+        return <Navigate to={"/"} />;
+      }
+    });
   };
 
   const logInWithGoogle = (credentialResponse) => {
@@ -26,11 +31,7 @@ export default function LogInForm() {
       email: dataUser.email,
       password: dataUser.sub,
     };
-    dispatch(userActions.sign_in(body)).then((response) => {
-      if (response.payload.success) {
-        navigate("/");
-      }
-    });
+    dispatch(userActions.sign_in(body));
   };
 
   return (

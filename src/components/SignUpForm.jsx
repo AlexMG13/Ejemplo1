@@ -147,13 +147,13 @@ export default function SignUpForm() {
             Register now
           </button>
         </div>
-        <div className="invisible lg:visible flex-1 relative self-center">
+        <div className="flex-1 relative self-center">
           <img
-            className="invisible lg:visible object-cover"
+            className="object-cover"
             src="https://images.unsplash.com/photo-1638271264550-32286ed1219b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80"
             alt="buenos aires"
           />
-          <div className="lg:bg-white hover:bg-blue-600 rounded-lg font-bold p-2 text-center mt-8 text-lg">
+          <div className="bg-white hover:bg-blue-600 rounded-lg font-bold p-2 text-center mt-8 text-lg">
             <Anchor to="/login">Already register?</Anchor>
           </div>
           <div className="mt-2">
