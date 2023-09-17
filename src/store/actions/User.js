@@ -1,5 +1,6 @@
 import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const sign_in = createAsyncThunk("sign_in", async (payload) => {
   try {
@@ -11,15 +12,23 @@ const sign_in = createAsyncThunk("sign_in", async (payload) => {
       })
       .then((response) => {
         localStorage.setItem("token", response.data.token);
+        Swal.fire({
+          icon: "success",
+          title: "Sign In correctly",
+        });
         return response.data;
       })
-      .catch((error) =>
-        error.response.data.message.foreach((message) => console.log(message))
-      );
-
-    return { user: user, message: console.log(user) };
+      .catch((error) => {
+        let errorMesage = error.response.data.message;
+        Swal.fire({
+          icon: "error",
+          title: "Could not been logged",
+          text: errorMesage,
+        });
+      });
+    return { user: user };
   } catch (error) {
-    console.log(error.message);
+    console.log(error);
   }
 });
 
@@ -33,7 +42,6 @@ const authenticate = createAsyncThunk("authenticate", async () => {
         },
       })
       .then((response) => {
-        console.log("Authenticated succesfull");
         localStorage.setItem("token", response.data.token);
         return response.data.user;
       });
@@ -47,21 +55,34 @@ const authenticate = createAsyncThunk("authenticate", async () => {
 
 const sign_out = createAsyncThunk("sign_out", async () => {
   try {
-    axios.post("http://localhost:3030/api/user/signout").then((response) => {
+    axios.post("http://localhost:3030/api/user/signout").then(() => {
       localStorage.removeItem("token");
     });
   } catch (error) {
-    console.log(error.message);
+    console.log(error);
   }
 });
 
 export const sign_up = createAsyncThunk("sign_up", async (obj) => {
   try {
-    const user = await axios.post(
-      "http://localhost:3030/api/user/register",
-      obj
-    );
-    localStorage.setItem("token", user.data.token);
+    const user = await axios
+      .post("http://localhost:3030/api/user/register", obj)
+      .then(() => {
+        Swal.fire({
+          icon: "success",
+          title: "Welcome",
+          text: "User created!",
+          footer: '<a href="/">Press to go Home Page!</a>',
+        });
+      })
+      .catch((error) => {
+        let errorMesage = error.response.data.message;
+        Swal.fire({
+          icon: "error",
+          title: "Could not been created",
+          text: errorMesage,
+        });
+      });
     return user.data;
   } catch (error) {
     console.log(error);

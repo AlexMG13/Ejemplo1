@@ -17,7 +17,12 @@ export default function LogInForm() {
       email: emailInputRef.current.value,
       password: passwordInputRef.current.value,
     };
-    dispatch(userActions.sign_in(body));
+    dispatch(userActions.sign_in(body)).then(() => {
+      const token = localStorage.getItem("token");
+      if (token) {
+        navigate("/");
+      }
+    });
   };
 
   const logInWithGoogle = (credentialResponse) => {
@@ -26,8 +31,9 @@ export default function LogInForm() {
       email: dataUser.email,
       password: dataUser.sub,
     };
-    dispatch(userActions.sign_in(body)).then((response) => {
-      if (response.payload.success) {
+    dispatch(userActions.sign_in(body)).then(() => {
+      const token = localStorage.getItem("token");
+      if (token) {
         navigate("/");
       }
     });
@@ -35,9 +41,9 @@ export default function LogInForm() {
 
   return (
     <main className="h-screen flex justify-center items-center">
-      <form className="sm:w-2/3 bg-blue-400 md:w-2/3 bg-blue-400 lg:w-1/3 bg-blue-400 rounded-lg">
+      <form className="w-1/3 bg-blue-400 rounded-lg" onSubmit={handlerInput}>
         <div className="p-2 flex flex-col justify-center items-center">
-          <h1 className="font-bold text-2xl">Hello! please Log In</h1>
+          <h1 className="font-bold text-2xl">Hello! please Sign In</h1>
           <p className="text-gray-200">Keep enjoying and sharing!</p>
         </div>
         <div className="flex flex-col justify-center items-center">
@@ -70,9 +76,7 @@ export default function LogInForm() {
             />
           </div>
           <div className=" bg-white hover:bg-blue-600 rounded-lg font-bold p-2 text-center text-lg mt-2">
-            <Anchor to="/" onClick={handlerInput}>
-              Log In
-            </Anchor>
+            <button type="submit ">Sign In</button>
           </div>
         </div>
 
@@ -87,9 +91,6 @@ export default function LogInForm() {
               }}
             />
             ;
-          </div>
-          <div className="bg-white hover:bg-blue-600 rounded-lg font-bold p-2 text-center text-lg my-4">
-            <Anchor to="/signup">Not registered yet?</Anchor>
           </div>
         </div>
       </form>
