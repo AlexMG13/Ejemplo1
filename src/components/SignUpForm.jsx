@@ -3,7 +3,7 @@ import { getContries } from "../services/citiesQueries";
 import { Link as Anchor } from "react-router-dom";
 import { GoogleLogin } from "@react-oauth/google";
 import decode from "jwt-decode";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import userActions from "../store/actions/User";
 import { useNavigate } from "react-router-dom";
 
@@ -33,20 +33,24 @@ export default function SignUpForm() {
     };
     dispatch(userActions.sign_up(body));
   };
-  const signUp = () => {
+  const signUp = (e) => {
+    e.preventDefault();
     const body = {
       name: nameInputRef.current.value,
       email: emailInputRef.current.value,
       password: passwordInputRef.current.value,
-      photo: photoInputRef.current.value,
-      country: countryInputRef.current.value,
     };
-    dispatch(userActions.sign_up(body));
+    dispatch(userActions.sign_up(body)).then(() => {
+      navigate("/login");
+    });
   };
 
   return (
     <main className="w-full lg:flex justify-center items-center h-[80%]">
-      <form className="md:w-2/3 bg-blue-400 lg:bg-blue-400 flex w-1/2 p-3 rounded-lg gap-3">
+      <form
+        className="md:w-2/3 bg-blue-400 lg:bg-blue-400 flex w-1/2 p-3 rounded-lg gap-3"
+        onSubmit={signUp}
+      >
         <div className="lg:flex-1">
           <div>
             <h1 className="text-3xl pb-2 font-bold">Let&#39;s get started!</h1>
@@ -117,7 +121,6 @@ export default function SignUpForm() {
             <input
               placeholder="URL of photo"
               className="rounded-md w-2/3 p-2"
-              type="url"
               id="url"
               name="url"
               ref={photoInputRef}
@@ -129,7 +132,6 @@ export default function SignUpForm() {
               id="country"
               name="country"
               ref={countryInputRef}
-              required
             >
               <option value="country">Country</option>
               {countries.map((country, i) => (
@@ -142,7 +144,6 @@ export default function SignUpForm() {
           <button
             className="bg-white hover:bg-blue-600 w-1/2 rounded-lg p-2 text-lg font-bold"
             type="submit"
-            onClick={signUp}
           >
             Register now
           </button>

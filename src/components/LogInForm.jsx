@@ -17,10 +17,17 @@ export default function LogInForm() {
       email: emailInputRef.current.value,
       password: passwordInputRef.current.value,
     };
+<<<<<<< HEAD
     dispatch(userActions.sign_in(body)).then((response) => {
       console.log(response.meta.arg.email);
       if (response.meta.arg.email != "") {
         return <Navigate to={"/"} />;
+=======
+    dispatch(userActions.sign_in(body)).then(() => {
+      const token = localStorage.getItem("token");
+      if (token) {
+        navigate("/");
+>>>>>>> sprint-4
       }
     });
   };
@@ -31,14 +38,23 @@ export default function LogInForm() {
       email: dataUser.email,
       password: dataUser.sub,
     };
+<<<<<<< HEAD
     dispatch(userActions.sign_in(body));
+=======
+    dispatch(userActions.sign_in(body)).then(() => {
+      const token = localStorage.getItem("token");
+      if (token) {
+        navigate("/");
+      }
+    });
+>>>>>>> sprint-4
   };
 
   return (
     <main className="h-screen flex justify-center items-center">
-      <form className="sm:w-2/3 bg-blue-400 md:w-2/3 bg-blue-400 lg:w-1/3 bg-blue-400 rounded-lg">
+      <form className="w-1/3 bg-blue-400 rounded-lg" onSubmit={handlerInput}>
         <div className="p-2 flex flex-col justify-center items-center">
-          <h1 className="font-bold text-2xl">Hello! please Log In</h1>
+          <h1 className="font-bold text-2xl">Hello! please Sign In</h1>
           <p className="text-gray-200">Keep enjoying and sharing!</p>
         </div>
         <div className="flex flex-col justify-center items-center">
@@ -71,9 +87,7 @@ export default function LogInForm() {
             />
           </div>
           <div className=" bg-white hover:bg-blue-600 rounded-lg font-bold p-2 text-center text-lg mt-2">
-            <Anchor to="/" onClick={handlerInput}>
-              Log In
-            </Anchor>
+            <button type="submit ">Sign In</button>
           </div>
         </div>
 
@@ -87,10 +101,9 @@ export default function LogInForm() {
                 console.log("Login Failed");
               }}
             />
-            ;
-          </div>
-          <div className="bg-white hover:bg-blue-600 rounded-lg font-bold p-2 text-center text-lg my-4">
-            <Anchor to="/signup">Not registered yet?</Anchor>
+            <div className=" bg-white hover:bg-blue-600 rounded-lg font-bold p-2 text-center text-lg my-2">
+              <Anchor to={"/signup"}>Not registered?</Anchor>
+            </div>
           </div>
         </div>
       </form>
