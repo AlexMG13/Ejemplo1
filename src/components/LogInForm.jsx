@@ -17,17 +17,10 @@ export default function LogInForm() {
       email: emailInputRef.current.value,
       password: passwordInputRef.current.value,
     };
-<<<<<<< HEAD
-    dispatch(userActions.sign_in(body)).then((response) => {
-      console.log(response.meta.arg.email);
-      if (response.meta.arg.email != "") {
-        return <Navigate to={"/"} />;
-=======
     dispatch(userActions.sign_in(body)).then(() => {
       const token = localStorage.getItem("token");
       if (token) {
         navigate("/");
->>>>>>> sprint-4
       }
     });
   };
@@ -38,16 +31,12 @@ export default function LogInForm() {
       email: dataUser.email,
       password: dataUser.sub,
     };
-<<<<<<< HEAD
-    dispatch(userActions.sign_in(body));
-=======
     dispatch(userActions.sign_in(body)).then(() => {
       const token = localStorage.getItem("token");
       if (token) {
         navigate("/");
       }
     });
->>>>>>> sprint-4
   };
 
   return (

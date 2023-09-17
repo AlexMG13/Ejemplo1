@@ -12,13 +12,6 @@ import userActions from "./store/actions/User";
 
 const router = createBrowserRouter([
   {
-<<<<<<< HEAD
-    path: "/login",
-    children: [{ path: "/login", element: <LogIn /> }],
-  },
-  {
-=======
->>>>>>> sprint-4
     path: "/",
     element: <Layout />,
     children: [{ path: "/", element: <Home /> }],

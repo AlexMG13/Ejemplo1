@@ -1,6 +1,5 @@
 import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const sign_in = createAsyncThunk("sign_in", async (payload) => {
@@ -19,13 +18,6 @@ const sign_in = createAsyncThunk("sign_in", async (payload) => {
         });
         return response.data;
       })
-<<<<<<< HEAD
-      .catch((error) =>
-        error.response.data.message.forEach((message) => console.log(message))
-      );
-
-    return { user: user, message: console.log(user) };
-=======
       .catch((error) => {
         let errorMesage = error.response.data.message;
         Swal.fire({
@@ -35,7 +27,6 @@ const sign_in = createAsyncThunk("sign_in", async (payload) => {
         });
       });
     return { user: user };
->>>>>>> sprint-4
   } catch (error) {
     console.log(error);
   }
