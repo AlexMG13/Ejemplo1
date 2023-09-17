@@ -90,7 +90,9 @@ export default function LogInForm() {
                 console.log("Login Failed");
               }}
             />
-            ;
+            <div className=" bg-white hover:bg-blue-600 rounded-lg font-bold p-2 text-center text-lg my-2">
+              <Anchor to={"/signup"}>Not registered?</Anchor>
+            </div>
           </div>
         </div>
       </form>

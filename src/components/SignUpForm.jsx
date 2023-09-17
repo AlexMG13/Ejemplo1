@@ -41,10 +41,7 @@ export default function SignUpForm() {
       password: passwordInputRef.current.value,
     };
     dispatch(userActions.sign_up(body)).then(() => {
-      const token = localStorage.getItem("token");
-      if (token) {
-        navigate("/login");
-      }
+      navigate("/login");
     });
   };
 

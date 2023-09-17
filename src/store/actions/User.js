@@ -1,5 +1,6 @@
 import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const sign_in = createAsyncThunk("sign_in", async (payload) => {
@@ -69,10 +70,9 @@ export const sign_up = createAsyncThunk("sign_up", async (obj) => {
       .post("http://localhost:3030/api/user/register", obj)
       .then(() => {
         Swal.fire({
-          icon: "success",
           title: "Welcome",
           text: "User created!",
-          footer: '<a href="/">Press to go Home Page!</a>',
+          footer: '<a href="/login">Please Singn In!</a>',
         });
       })
       .catch((error) => {
