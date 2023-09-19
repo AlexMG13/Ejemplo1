@@ -45,7 +45,7 @@ const citiesReducer = createReducer(initialState, (builder) => {
       const filter = action.payload.cities.filter((city) =>
         city.name.toLowerCase().includes(action.payload.inputValue)
       );
-      const newState = { ...state, cityFiltered: filter };
+      const newState = { ...state, cities: filter };
       return newState;
     })
     .addCase(citiesActions.add_cities_async.fulfilled, (state, action) => {

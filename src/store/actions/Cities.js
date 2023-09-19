@@ -23,10 +23,9 @@ const add_city = createAction("add_city", (city) => {
     },
   };
 });
-const add_city_filtered = createAction("add_city_filtered", (array, search) => {
+const add_city_filtered = createAction("add_city_filtered", (search) => {
   return {
     payload: {
-      cities: array,
       inputValue: search,
     },
   };
