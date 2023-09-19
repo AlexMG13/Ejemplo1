@@ -5,21 +5,40 @@ import Cities from "./pages/Cities";
 import Details from "./pages/Details";
 import SignUp from "./pages/SignUp";
 import LogIn from "./pages/LogIn";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  Navigate,
+  Outlet,
+  RouterProvider,
+} from "react-router-dom";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import userActions from "./store/actions/User";
+
+const ProtectedRoute = () => {
+  const user = useSelector((store) => store.userReducer.user);
+  if (user) {
+    return <Outlet />;
+  }
+  return <Navigate to="/login" />;
+};
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout />,
-    children: [{ path: "/", element: <Home /> }],
-  },
-  {
-    path: "/cities",
-    element: <Layout />,
-    children: [{ path: "/cities", element: <Cities /> }],
+    element: <ProtectedRoute />,
+    children: [
+      {
+        path: "/cities",
+        element: <Layout />,
+        children: [{ path: "/cities", element: <Cities /> }],
+      },
+      {
+        path: "/",
+        element: <Layout />,
+        children: [{ path: "/", element: <Home /> }],
+      },
+    ],
   },
   {
     path: "/city/:id",
@@ -28,6 +47,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/signup",
+    element: <Layout />,
     children: [{ path: "/signup", element: <SignUp /> }],
   },
   {

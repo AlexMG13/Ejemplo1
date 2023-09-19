@@ -6,6 +6,7 @@ import decode from "jwt-decode";
 import { useDispatch, useSelector } from "react-redux";
 import userActions from "../store/actions/User";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export default function SignUpForm() {
   const emailInputRef = useRef();
@@ -40,9 +41,25 @@ export default function SignUpForm() {
       email: emailInputRef.current.value,
       password: passwordInputRef.current.value,
     };
-    dispatch(userActions.sign_up(body)).then(() => {
-      navigate("/login");
-    });
+    dispatch(userActions.sign_up(body))
+      .then(() => {
+        navigate("/login");
+      })
+      .then(() => {
+        Swal.fire({
+          title: "Welcome",
+          text: "User created!",
+          footer: '<a href="/login">Please Singn In!</a>',
+        });
+      })
+      .catch((error) => {
+        let errorMesage = error.response.data.message;
+        Swal.fire({
+          icon: "error",
+          title: "Could not been created",
+          text: errorMesage,
+        });
+      });
   };
 
   return (

@@ -4,25 +4,41 @@ import { GoogleLogin } from "@react-oauth/google";
 import decode from "jwt-decode";
 import { useDispatch } from "react-redux";
 import userActions from "../store/actions/User";
+import Swal from "sweetalert2";
 
 export default function LogInForm() {
   const dispatch = useDispatch();
-  const emailInputRef = useRef();
-  const passwordInputRef = useRef();
+  const email = useRef();
+  const password = useRef();
   const navigate = useNavigate();
 
   const handlerInput = (e) => {
     e.preventDefault();
     const body = {
-      email: emailInputRef.current.value,
-      password: passwordInputRef.current.value,
+      email: email.current.value,
+      password: password.current.value,
     };
-    dispatch(userActions.sign_in(body)).then(() => {
-      const token = localStorage.getItem("token");
-      if (token) {
-        navigate("/");
-      }
-    });
+    dispatch(userActions.sign_in(body))
+      .then(() => {
+        const token = localStorage.getItem("token");
+        if (token) {
+          navigate("/");
+        }
+      })
+      .then(() => {
+        Swal.fire({
+          icon: "success",
+          title: "Sign In correctly",
+        });
+      })
+      .catch((error) => {
+        let errorMesage = error.response.data.message;
+        Swal.fire({
+          icon: "error",
+          title: "Could not been logged",
+          text: errorMesage,
+        });
+      });
   };
 
   const logInWithGoogle = (credentialResponse) => {
@@ -31,12 +47,27 @@ export default function LogInForm() {
       email: dataUser.email,
       password: dataUser.sub,
     };
-    dispatch(userActions.sign_in(body)).then(() => {
-      const token = localStorage.getItem("token");
-      if (token) {
-        navigate("/");
-      }
-    });
+    dispatch(userActions.sign_in(body))
+      .then(() => {
+        const token = localStorage.getItem("token");
+        if (token) {
+          navigate("/");
+        }
+      })
+      .then(() => {
+        Swal.fire({
+          icon: "success",
+          title: "Sign In correctly",
+        });
+      })
+      .catch((error) => {
+        let errorMesage = error.response.data.message;
+        Swal.fire({
+          icon: "error",
+          title: "Could not been logged",
+          text: errorMesage,
+        });
+      });
   };
 
   return (
@@ -57,7 +88,7 @@ export default function LogInForm() {
               id="email"
               name="email"
               className="rounded-lg"
-              ref={emailInputRef}
+              ref={email}
               required
             />
           </div>
@@ -71,7 +102,7 @@ export default function LogInForm() {
               id="password"
               name="password"
               className="rounded-lg"
-              ref={passwordInputRef}
+              ref={password}
               required
             />
           </div>
