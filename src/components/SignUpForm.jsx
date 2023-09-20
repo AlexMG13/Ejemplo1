@@ -32,20 +32,23 @@ export default function SignUpForm() {
       password: dataUser.sub,
       photo: dataUser.picture,
     };
-    dispatch(userActions.sign_up(body));
+    dispatch(userActions.sign_up_google(body));
   };
   const signUp = (e) => {
     e.preventDefault();
     const body = {
       name: nameInputRef.current.value,
+      lastname: lastnameInputRef.current.value,
       email: emailInputRef.current.value,
       password: passwordInputRef.current.value,
+      photo: photoInputRef.current.value,
+      country: countryInputRef.current.value,
     };
     dispatch(userActions.sign_up(body))
-      .then(() => {
+      .then((response) => {
         navigate("/login");
       })
-      .then(() => {
+      .then((response) => {
         Swal.fire({
           title: "Welcome",
           text: "User created!",
@@ -101,6 +104,7 @@ export default function SignUpForm() {
               id="lastname"
               name="lastname"
               ref={lastnameInputRef}
+              required
             />
           </div>
           <div className="pb-2">
@@ -141,6 +145,7 @@ export default function SignUpForm() {
               id="url"
               name="url"
               ref={photoInputRef}
+              required
             />
           </div>
           <div className="pb-2">
@@ -149,6 +154,7 @@ export default function SignUpForm() {
               id="country"
               name="country"
               ref={countryInputRef}
+              required
             >
               <option value="country">Country</option>
               {countries.map((country, i) => (

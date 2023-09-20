@@ -22,6 +22,13 @@ const userReducer = createReducer(initialState, (builder) =>
         token: action.payload.token,
       };
     })
+    .addCase(userActions.sign_up_google.fulfilled, (state, action) => {
+      return {
+        ...initialState,
+        user: action.payload.user,
+        token: action.payload.token,
+      };
+    })
     .addCase(userActions.authenticate.fulfilled, (state, action) => {
       return {
         ...initialState,
