@@ -31,7 +31,7 @@ const authenticate = createAsyncThunk("authenticate", async () => {
       token: token,
     };
   } catch (error) {
-    console.log(error.message);
+    console.log(error);
   }
 });
 

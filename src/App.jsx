@@ -16,8 +16,8 @@ import { useDispatch, useSelector } from "react-redux";
 import userActions from "./store/actions/User";
 
 const ProtectedRoute = () => {
-  const user = useSelector((store) => store.userReducer.user);
-  if (user) {
+  const token = localStorage.getItem("token");
+  if (token) {
     return <Outlet />;
   }
   return <Navigate to="/login" />;
@@ -65,7 +65,7 @@ function App() {
       dispatch(userActions.authenticate());
     }
   }, []);
-  return <RouterProvider router={router}></RouterProvider>;
+  return <RouterProvider router={router} />;
 }
 
 export default App;
