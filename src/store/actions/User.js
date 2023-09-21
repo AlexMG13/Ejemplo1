@@ -45,10 +45,16 @@ const sign_out = createAction("sign_out", () => {
 
 const sign_up = createAsyncThunk("sign_up", async (obj) => {
   try {
-    const response = await axios.post(
-      "http://localhost:3030/api/user/register",
-      obj
-    );
+    const response = await axios
+      .post("http://localhost:3030/api/user/register", obj)
+      .catch((error) => {
+        let errorMesage = error.response.data.message;
+        Swal.fire({
+          icon: "error",
+          title: "Could not been created",
+          text: errorMesage,
+        });
+      });
     //localStorage.setItem("token", response.data.token);
     return response.data;
   } catch (error) {
@@ -62,7 +68,7 @@ const sign_up_google = createAsyncThunk("sign_up_google", async (obj) => {
       "http://localhost:3030/api/user/registergoogle",
       obj
     );
-    localStorage.setItem("token", response.data.token);
+    //localStorage.setItem("token", response.data.token);
     return response.data;
   } catch (error) {
     console.log(error);
