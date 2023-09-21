@@ -54,15 +54,15 @@ export default function SignUpForm() {
           text: "User created!",
           footer: '<a href="/login">Please Singn In!</a>',
         });
-      })
-      .catch((error) => {
+      });
+    /* .catch((error) => {
         let errorMesage = error.response.data.message;
         Swal.fire({
           icon: "error",
           title: "Could not been created",
           text: errorMesage,
         });
-      });
+      }); */
   };
 
   return (

@@ -1,5 +1,6 @@
 import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const sign_in = createAsyncThunk("sign_in", async (body) => {
   try {
@@ -48,7 +49,7 @@ const sign_up = createAsyncThunk("sign_up", async (obj) => {
       "http://localhost:3030/api/user/register",
       obj
     );
-    localStorage.setItem("token", response.data.token);
+    //localStorage.setItem("token", response.data.token);
     return response.data;
   } catch (error) {
     console.log(error);
