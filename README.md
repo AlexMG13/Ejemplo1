@@ -1,8 +1,19 @@
-# React + Vite
+# MyTinerary - Project for MindHub Full Stack MERN bootcamp
+Web with itineraries for diferents cities in the world.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Objectives:
+- Develop an UI with React library and Tailwind, following a mock up given to us.
+- Learn the diferents libraries for React like:
+  - reduxjs/toolkit
+  - react-router-dom
+  - react-oauth/google
+  - axios
+  - react-icons
+  - sweetalert2
+ 
+## Working on:
+- Add activities in the itineraries.
+- Add buttons that allow edit, delete and add cities and itineraries.
+- Add Comments and likes to the itineraries.
+- Add phone responsive.
+- Deploy the project.
